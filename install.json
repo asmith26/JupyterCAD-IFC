@@ -1,5 +1,5 @@
 {
   "packageManager": "python",
-  "packageName": "jupytercad_freecad",
-  "uninstallInstructions": "Use your Python package manager (pip, conda, etc.) to uninstall the package jupytercad_freecad"
+  "packageName": "jupytercad_ifc",
+  "uninstallInstructions": "Use your Python package manager (pip, conda, etc.) to uninstall the package jupytercad_ifc"
 }

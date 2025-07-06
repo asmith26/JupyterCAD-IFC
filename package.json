@@ -1,15 +1,15 @@
 {
-    "name": "@jupytercad/jupytercad-freecad",
+    "name": "@jupytercad/jupytercad-ifc",
     "version": "3.0.0",
-    "description": "A JupyterCAD extension for FreeCAD.",
+    "description": "A JupyterCAD extension for IFC.",
     "keywords": [
         "jupyter",
         "jupyterlab",
         "jupyterlab-extension"
     ],
-    "homepage": "https://github.com/jupytercad/JupyterCAD-FreeCAD",
+    "homepage": "https://github.com/jupytercad/JupyterCAD-IFC",
     "bugs": {
-        "url": "https://github.com/jupytercad/JupyterCAD-FreeCAD/issues"
+        "url": "https://github.com/jupytercad/JupyterCAD-IFC/issues"
     },
     "license": "BSD-3-Clause",
     "author": "JupyterCad contributors",
@@ -22,7 +22,7 @@
     "style": "style/index.css",
     "repository": {
         "type": "git",
-        "url": "https://github.com/jupytercad/JupyterCAD-FreeCAD"
+        "url": "https://github.com/jupytercad/JupyterCAD-IFC"
     },
     "scripts": {
         "build": "jlpm build:lib && jlpm build:labextension:dev",
@@ -34,7 +34,7 @@
         "clean": "jlpm clean:lib",
         "clean:lib": "rimraf lib tsconfig.tsbuildinfo",
         "clean:lintcache": "rimraf .eslintcache .stylelintcache",
-        "clean:labextension": "rimraf jupytercad_freecad/labextension jupytercad_freecad/_version.py",
+        "clean:labextension": "rimraf jupytercad_ifc/labextension jupytercad_ifc/_version.py",
         "clean:all": "jlpm clean:lib && jlpm clean:labextension && jlpm clean:lintcache",
         "eslint": "jlpm eslint:check --fix",
         "eslint:check": "eslint . --cache --ext .ts,.tsx",
@@ -97,7 +97,7 @@
     },
     "jupyterlab": {
         "extension": true,
-        "outputDir": "jupytercad_freecad/labextension",
+        "outputDir": "jupytercad_ifc/labextension",
         "sharedPackages": {
             "@jupytercad/base": {
                 "singleton": true,

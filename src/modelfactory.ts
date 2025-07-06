@@ -9,10 +9,10 @@ import { Contents } from '@jupyterlab/services';
 /**
  * A Model factory to create new instances of JupyterCadModel.
  */
-export class JupyterCadFCModelFactory
+export class JupyterCadIFCModelFactory
   implements DocumentRegistry.IModelFactory<JupyterCadModel>
 {
-  constructor(options: JupyterCadFCModelFactory.IOptions) {
+  constructor(options: JupyterCadIFCModelFactory.IOptions) {
     this._annotationModel = options.annotationModel;
   }
 
@@ -27,7 +27,7 @@ export class JupyterCadFCModelFactory
    * @returns The name
    */
   get name(): string {
-    return 'jupytercad-fcmodel';
+    return 'jupytercad-ifcmodel';
   }
 
   /**
@@ -36,7 +36,7 @@ export class JupyterCadFCModelFactory
    * @returns The content type
    */
   get contentType(): Contents.ContentType {
-    return 'FCStd';
+    return 'ifc';
   }
 
   /**
@@ -94,7 +94,7 @@ export class JupyterCadFCModelFactory
   private _disposed = false;
 }
 
-export namespace JupyterCadFCModelFactory {
+export namespace JupyterCadIFCModelFactory {
   export interface IOptions {
     annotationModel: IAnnotationModel;
   }

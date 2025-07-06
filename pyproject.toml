@@ -7,7 +7,7 @@ requires = [
 build-backend = "hatchling.build"
 
 [project]
-name = "jupytercad_freecad"
+name = "jupytercad_ifc"
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.8"
@@ -39,25 +39,25 @@ source = "nodejs"
 fields = ["description", "authors", "urls"]
 
 [tool.hatch.build.targets.sdist]
-artifacts = ["jupytercad_freecad/labextension"]
+artifacts = ["jupytercad_ifc/labextension"]
 exclude = [".github", "binder"]
 
 [tool.hatch.build.targets.wheel.shared-data]
-"install.json" = "share/jupyter/labextensions/@jupytercad/jupytercad-freecad/install.json"
-"jupytercad_freecad/labextension" = "share/jupyter/labextensions/@jupytercad/jupytercad-freecad"
+"install.json" = "share/jupyter/labextensions/@jupytercad/jupytercad-ifc/install.json"
+"jupytercad_ifc/labextension" = "share/jupyter/labextensions/@jupytercad/jupytercad-ifc"
 "jupyter-config/server-config" = "etc/jupyter/jupyter_server_config.d"
 
 [tool.hatch.build.hooks.version]
-path = "jupytercad_freecad/_version.py"
+path = "jupytercad_ifc/_version.py"
 
 [tool.hatch.build.hooks.jupyter-builder]
 dependencies = ["hatch-jupyter-builder>=0.5"]
 build-function = "hatch_jupyter_builder.npm_builder"
 ensured-targets = [
-    "jupytercad_freecad/labextension/static/style.js",
-    "jupytercad_freecad/labextension/package.json",
+    "jupytercad_ifc/labextension/static/style.js",
+    "jupytercad_ifc/labextension/package.json",
 ]
-skip-if-exists = ["jupytercad_freecad/labextension/static/style.js"]
+skip-if-exists = ["jupytercad_ifc/labextension/static/style.js"]
 
 [tool.hatch.build.hooks.jupyter-builder.build-kwargs]
 build_cmd = "build:prod"
@@ -67,7 +67,7 @@ npm = ["jlpm"]
 build_cmd = "install:extension"
 npm = ["jlpm"]
 source_dir = "src"
-build_dir = "jupytercad_freecad/labextension"
+build_dir = "jupytercad_ifc/labextension"
 
 [tool.jupyter-releaser.options]
 version_cmd = "hatch version"
@@ -84,4 +84,4 @@ before-build-python = ["jlpm clean:all"]
 ignore = ["W002"]
 
 [project.entry-points.jupyter_ydoc]
-FCStd = "jupytercad_freecad.fcstd_ydoc:YFCStd"
+FCStd = "jupytercad_ifc.fcstd_ydoc:YFCStd" #todo

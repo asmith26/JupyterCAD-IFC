@@ -1,7 +1,7 @@
 {
   "ServerApp": {
     "jpserver_extensions": {
-      "jupytercad_freecad": true
+      "jupytercad_ifc": true
     }
   }
 }

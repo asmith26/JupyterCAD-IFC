@@ -28,15 +28,15 @@ import {
   IJupyterCadWidget
 } from '@jupytercad/schema';
 import { requestAPI } from '@jupytercad/base';
-import { JupyterCadFCModelFactory } from './modelfactory';
-import freecadIconSvg from '../style/freecad.svg';
+import { JupyterCadIFCModelFactory } from './modelfactory';
+import ifcIconSvg from '../style/ifc.svg';
 
-const freecadIcon = new LabIcon({
+const ifcIcon = new LabIcon({
   name: 'jupytercad:stp',
-  svgstr: freecadIconSvg
+  svgstr: ifcIconSvg
 });
 
-const FACTORY = 'Jupytercad Freecad Factory';
+const FACTORY = 'Jupytercad IFC Factory';
 
 const activate = async (
   app: JupyterFrontEnd,
@@ -47,30 +47,30 @@ const activate = async (
   workerRegistry: IJCadWorkerRegistry,
   externalCommandRegistry: IJCadExternalCommandRegistry
 ): Promise<void> => {
-  const fcCheck = await requestAPI<{ installed: boolean }>(
-    'jupytercad_freecad/backend-check',
+  const ifcCheck = await requestAPI<{ installed: boolean }>(
+    'jupytercad_ifc/backend-check',
     {
       method: 'POST',
       body: JSON.stringify({
-        backend: 'FreeCAD'
+        backend: 'IfcOpenShell'
       })
     }
   );
-  const { installed } = fcCheck;
+  const { installed } = ifcCheck;
   const backendCheck = () => {
     if (!installed) {
       showErrorMessage(
-        'FreeCAD is not installed',
-        'FreeCAD is required to open FCStd files'
+        'IfcOpenShell is not installed',
+        'IfcOpenShell is required to open ifc files'
       );
     }
     return installed;
   };
   const widgetFactory = new JupyterCadWidgetFactory({
     name: FACTORY,
-    modelName: 'jupytercad-fcmodel',
-    fileTypes: ['FCStd'],
-    defaultFor: ['FCStd'],
+    modelName: 'jupytercad-ifcmodel',
+    fileTypes: ['ifc'],
+    defaultFor: ['ifc'],
     tracker,
     commands: app.commands,
     workerRegistry,
@@ -82,29 +82,29 @@ const activate = async (
   app.docRegistry.addWidgetFactory(widgetFactory);
 
   // Creating and registering the model factory for our custom DocumentModel
-  const modelFactory = new JupyterCadFCModelFactory({ annotationModel });
+  const modelFactory = new JupyterCadIFCModelFactory({ annotationModel });
   app.docRegistry.addModelFactory(modelFactory);
   // register the filetype
   app.docRegistry.addFileType({
-    name: 'FCStd',
-    displayName: 'FCStd',
+    name: 'ifc',
+    displayName: 'ifc',
     mimeTypes: ['application/octet-stream'],
-    extensions: ['.FCStd', 'fcstd'],
+    extensions: ['.ifc', 'ifc'],
     fileFormat: 'base64',
-    contentType: 'FCStd',
-    icon: freecadIcon
+    contentType: 'ifc',
+    icon: ifcIcon
   });
 
-  const FCStdSharedModelFactory: SharedDocumentFactory = () => {
+  const ifcSharedModelFactory: SharedDocumentFactory = () => {
     return new JupyterCadDoc();
   };
   drive.sharedModelFactory.registerDocumentFactory(
-    'FCStd',
-    FCStdSharedModelFactory
+    'ifc',
+    ifcSharedModelFactory
   );
 
   widgetFactory.widgetCreated.connect((sender, widget) => {
-    widget.title.icon = freecadIcon;
+    widget.title.icon = ifcIcon;
     // Notify the instance tracker if restore data needs to update.
     widget.context.pathChanged.connect(() => {
       tracker.save(widget);
@@ -117,11 +117,11 @@ const activate = async (
     app.shell.activateById('jupytercad::leftControlPanel');
     app.shell.activateById('jupytercad::rightControlPanel');
   });
-  console.log('jupytercad:fcplugin is activated!');
+  console.log('jupytercad:ifcplugin is activated!');
 };
 
-export const fcplugin: JupyterFrontEndPlugin<void> = {
-  id: 'jupytercad:fcplugin',
+export const ifcplugin: JupyterFrontEndPlugin<void> = {
+  id: 'jupytercad:ifcplugin',
   requires: [
     IJupyterCadDocTracker,
     IThemeManager,

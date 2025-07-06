@@ -31,7 +31,7 @@ jobs:
           python -m pip install .[test]
 
           jupyter labextension list
-          jupyter labextension list 2>&1 | grep -ie "@jupytercad/jupytercad-freecad.*OK"
+          jupyter labextension list 2>&1 | grep -ie "@jupytercad/jupytercad-ifc.*OK"
           python -m jupyterlab.browser_check --no-chrome-test
 
       - name: Package the extension
@@ -40,13 +40,13 @@ jobs:
 
           pip install build
           python -m build
-          pip uninstall -y "jupytercad_freecad" jupyterlab
+          pip uninstall -y "jupytercad_ifc" jupyterlab
 
       - name: Upload extension packages
         uses: actions/upload-artifact@v4
         with:
           name: extension-artifacts
-          path: dist/jupytercad_freecad*
+          path: dist/jupytercad_ifc*
           if-no-files-found: error
 
   test_isolated:
@@ -69,11 +69,11 @@ jobs:
           sudo rm -rf $(which node)
           sudo rm -rf $(which node)
 
-          pip install "jupyterlab>=4.0.0,<5" jupytercad_freecad*.whl
+          pip install "jupyterlab>=4.0.0,<5" jupytercad_ifc*.whl
 
 
           jupyter labextension list
-          jupyter labextension list 2>&1 | grep -ie "@jupytercad/jupytercad-freecad.*OK"
+          jupyter labextension list 2>&1 | grep -ie "@jupytercad/jupytercad-ifc.*OK"
           python -m jupyterlab.browser_check --no-browser-test
 
   integration-tests:
@@ -107,7 +107,7 @@ jobs:
         shell: bash -l {0}
         run: |
           set -eux
-          pip install "jupytercad>=3.0.0" jupytercad_freecad*.whl
+          pip install "jupytercad>=3.0.0" jupytercad_ifc*.whl
 
       - name: Install dependencies
         shell: bash -l {0}
