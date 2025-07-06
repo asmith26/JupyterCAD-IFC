@@ -4,17 +4,17 @@ from functools import partial
 from pycrdt import Array, Map, Text
 from jupyter_ydoc.ybasedoc import YBaseDoc
 
-from .freecad.loader import FCStd
+from .ifc.loader import IFC
 
 
-class YFCStd(YBaseDoc):
+class YIFC(YBaseDoc):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._ydoc["source"] = self._ysource = Text()
         self._ydoc["objects"] = self._yobjects = Array()
         self._ydoc["options"] = self._yoptions = Map()
         self._ydoc["metadata"] = self._ymetadata = Map()
-        self._virtual_file = FCStd()
+        self._virtual_file = IFC()
 
     @property
     def objects(self) -> Array:
@@ -24,11 +24,11 @@ class YFCStd(YBaseDoc):
         return "0.1.0"
 
     def get(self):
-        fc_objects = self._yobjects.to_py()
+        ifc_objects = self._yobjects.to_py()
         options = self._yoptions.to_py()
         meta = self._ymetadata.to_py()
 
-        self._virtual_file.save(fc_objects, options, meta)
+        self._virtual_file.save(ifc_objects, options, meta)
         return self._virtual_file.sources
 
     def set(self, value):

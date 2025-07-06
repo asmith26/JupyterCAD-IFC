@@ -1,6 +1,6 @@
-# jupytercad_freecad
+# jupytercad_ifc
 
-[![Github Actions Status](https://github.com/jupytercad/jupytercad-freecad/workflows/Build/badge.svg)](https://github.com/jupytercad/jupytercad-freecad/actions/workflows/build.yml)
+[![Github Actions Status](https://github.com/jupytercad/jupytercad-ifc/workflows/Build/badge.svg)](https://github.com/jupytercad/jupytercad-ifc/actions/workflows/build.yml)
 A JupyterLab extension.
 
 ## Requirements
@@ -12,7 +12,7 @@ A JupyterLab extension.
 To install the extension, execute:
 
 ```bash
-pip install jupytercad_freecad
+pip install jupytercad_ifc
 ```
 
 ## Uninstall
@@ -20,7 +20,7 @@ pip install jupytercad_freecad
 To remove the extension, execute:
 
 ```bash
-pip uninstall jupytercad_freecad
+pip uninstall jupytercad_ifc
 ```
 
 ## Contributing
@@ -35,13 +35,13 @@ The `jlpm` command is JupyterLab's pinned version of
 
 ```bash
 # Clone the repo to your local environment
-# Change directory to the jupytercad_freecad directory
+# Change directory to the jupytercad_ifc directory
 # Install package in development mode
 pip install -e "."
 # Link your development version of the extension with JupyterLab
 jupyter labextension develop . --overwrite
 # Server extension must be manually installed in develop mode
-jupyter server extension enable jupytercad_freecad
+jupyter server extension enable jupytercad_ifc
 # Rebuild extension Typescript source after making changes
 jlpm build
 ```
@@ -66,12 +66,12 @@ jupyter lab build --minimize=False
 ### Development uninstall
 
 ```bash
-pip uninstall jupytercad_freecad
+pip uninstall jupytercad_ifc
 ```
 
 In development mode, you will also need to remove the symlink created by `jupyter labextension develop`
 command. To find its location, you can run `jupyter labextension list` to figure out where the `labextensions`
-folder is located. Then you can remove the symlink named `@jupytercad/jupytercad_freecad` within that folder.
+folder is located. Then you can remove the symlink named `@jupytercad/jupytercad_ifc` within that folder.
 
 ### Packaging the extension
 

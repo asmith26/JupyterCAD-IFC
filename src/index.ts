@@ -1,3 +1,3 @@
-import { fcplugin } from './plugins';
+import { ifcplugin } from './plugins';
 
-export default [fcplugin];
+export default [ifcplugin];

@@ -10,10 +10,10 @@ class BackendCheckHandler(APIHandler):
     def post(self):
         body = self.get_json_body()
         backend = body.get("backend")
-        if backend == "FreeCAD":
+        if backend == "IfcOpenShell":
             fc_installed = True
             try:
-                import ifc  # noqa
+                import ifcopenshell  # noqa
             except ImportError:
                 fc_installed = False
             self.finish(json.dumps({"installed": fc_installed}))
