@@ -45,7 +45,7 @@ export class JupyterCadIFCModelFactory
    * @returns the file format
    */
   get fileFormat(): Contents.FileFormat {
-    return 'base64';
+    return 'text';
   }
 
   /**

@@ -88,9 +88,9 @@ const activate = async (
   app.docRegistry.addFileType({
     name: 'ifc',
     displayName: 'ifc',
-    mimeTypes: ['application/octet-stream'],
-    extensions: ['.ifc', 'ifc'],
-    fileFormat: 'base64',
+    mimeTypes: ['text/plain'],
+    extensions: ['.IFC', 'ifc'],
+    fileFormat: 'text',
     contentType: 'ifc',
     icon: ifcIcon
   });
